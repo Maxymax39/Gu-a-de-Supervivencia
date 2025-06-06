@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Supervivencia Académica - CECyT 16 Hidalgo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Importa la fuente 'Special Elite' para los títulos, dándoles un estilo distintivo y un toque único */
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+        
+        /* Establece la fuente 'Inter' como predeterminada para el cuerpo del texto, para asegurar una legibilidad general óptima */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Oculta las secciones de contenido por defecto para que podamos controlarlas con JavaScript y mostrarlas dinámicamente */
+        .content-section {
+            display: none;
+        }
+        /* Muestra la sección de contenido que tiene la clase 'active', haciéndola visible al usuario */
+        .content-section.active {
+            display: block;
+        }
+        /* Estilo para el enlace de navegación activo, resaltándolo visualmente para indicar la sección actual */
+        .nav-link.active {
+            background-color: #A66963; /* Color de fondo para el enlace activo */
+            color: #40010D; /* Color de texto para el enlace activo */
+            font-weight: 600; /* Texto en negrita para el enlace activo */
+        }
+        /* Estilos generales para los iframes que previsualizan documentos (PDFs, PPTs, etc.) */
+        .document-viewer-iframe {
+            width: 100%; /* El iframe ocupará todo el ancho disponible de su contenedor */
+            height: 600px; /* Altura fija para el iframe, que puede ajustarse según la necesidad del contenido */
+            border: 1px solid #e2e8f0; /* Borde sutil para el iframe, mejorando su integración visual */
+            border-radius: 0.5rem; /* Bordes redondeados para una apariencia más suave */
+        }
+        /* Estilos específicos para los títulos h1, utilizando la fuente 'Special Elite' para un diseño consistente */
+        h1{
+            font-family: "Special Elite", system-ui;
+            font-weight: 700;
+            font-style: normal;
+        }
+        /* Estilos específicos para los títulos h2, también usando la fuente 'Special Elite' */
+        h2{   
+            font-family: "Special Elite", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        /* Estilos para el contenido del acordeón, que está oculto por defecto y se expande al hacer clic */
+        .accordion-content {
+            max-height: 0; /* Inicialmente, la altura máxima es 0 para ocultar el contenido */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde */
+            transition: max-height 0.3s ease-out; /* Añade una transición suave al abrir/cerrar el acordeón */
+        }
+        /* Estilo para la flecha indicadora del acordeón, permitiendo una transición visual al girar */
+        .accordion-toggle span.float-right {
+            transition: transform 0.3s ease-out; /* Transición suave para el giro de la flecha */
+        }
+        /* Gira la flecha 180 grados cuando el acordeón está abierto, indicando su estado */
+        .accordion-toggle.open span.float-right {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-[#D9D3D0] text-[#333333]">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-[#40010D] text-white p-6 shadow-md">
+            <div class="container mx-auto max-w-6xl flex items-center justify-between">
+                <img src="cecyt 16.png" alt="Logo CECyT 16" height="150" width="150">
+                <div class="text-center flex-grow">
+                    <h1 class="text-3xl font-bold">Guía de Supervivencia Académica</h1>
+                    <h2 class="text-lg mt-1">Centro de Estudios Científicos y Tecnológicos N°16 "Hidalgo"</h2>
+                    <h2 class="text-lg mt-1">Instituto Politécnico Nacional</h2>
+                    <p class="text-md mt-2">Gran Proyecto: "Guía de Supervivencia" - Grupo: 2TM15</p>
+                    <p class="text-md">Director: ADALBERTO LUGO CASTILLO</p>
+                </div>
+                <img src="Ipn.png.png" alt="Logo IPN" height="150" width="150">
+            </div>
+        </header>
+
+        <div class="flex-grow container mx-auto max-w-6xl p-4 sm:p-6 lg:p-8 flex flex-col md:flex-row gap-6">
+            <aside class="md:w-1/4 bg-white p-4 rounded-lg shadow-lg h-fit">
+                <h2 class="text-xl font-semibold mb-4 text-[#1E3A8A]">Materias</h2>
+                <nav id="navigation" class="space-y-2">
+                    <a href="#" data-target="inicio" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🏠 Inicio</a>
+                    <a href="#" data-target="algebra" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">📐 Álgebra</a>
+                    <a href="#" data-target="dhp" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🧠 DHP</a>
+                    <a href="#" data-target="expresion" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🗣️ Expresión Oral y Escrita I</a>
+                    <a href="#" data-target="desarrollo_personal" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🌱 Desarrollo Personal</a>
+                    <a href="#" data-target="historia" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">📜 Historia I</a>
+                    <a href="#" data-target="filosofia" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🤔 Filosofía I</a>
+                    <a href="#" data-target="ingles" class="nav-link block p-3 rounded-md hover:bg-blue-100 transition-colors duration-150">🌍 Inglés</a>
+                </nav>
+            </aside>
+
+            <main id="main-content" class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg">
+                <section id="inicio" class="content-section"></section>
+                <section id="algebra" class="content-section"></section>
+                <section id="dhp" class="content-section"></section>
+                <section id="expresion" class="content-section"></section>
+                <section id="desarrollo_personal" class="content-section"></section>
+                <section id="historia" class="content-section"></section>
+                <section id="filosofia" class="content-section"></section>
+                <section id="ingles" class="content-section"></section>
+            </main>
+        </div>
+
+        <footer class="bg-[#40010D] text-white text-center p-4 mt-auto">
+            <p>&copy; 2025 Guía de Supervivencia CECyT 16. Un recurso para estudiantes.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Objeto 'guideData': Contiene toda la información estructurada para cada sección de la guía.
+        // Cada propiedad del objeto (ej. 'inicio', 'algebra') representa una materia o sección.
+        // Dentro de cada materia, hay propiedades como 'title', 'introduction', 'commonProblems', 'strategies', y 'evidenceUrl'.
+        const guideData = {
+            inicio: {
+                title: "¡Bienvenido/a a tu Guía de Supervivencia Académica!",
+                content: `
+                    <p class="mb-4 text-gray-700 leading-relaxed">
+                        Sabemos que la transición al bachillerato en el CECyT 16 "Hidalgo" puede ser un desafío emocionante pero también exigente. Esta guía está diseñada para ser tu aliada, ofreciéndote herramientas y estrategias prácticas que te ayudarán a navegar tus materias del primer semestre, mejorar tus hábitos de estudio y, lo más importante, alcanzar el éxito académico y disfrutar esta nueva etapa.
+                    </p>
+                    <p class="mb-4 text-gray-700 leading-relaxed">
+                        En el CECyT 16 "Hidalgo", el principal problema establecido está relacionado con el ajuste del proceso de aprendizaje que los estudiantes experimentan debido a los requisitos académicos de la educación media superior. Existen múltiples problemas para esta dificultad, principalmente vinculados a una sobrecarga del contenido escolar en relación con la preparación y estrategias de enseñanza/aprendizaje no siempre exitosas o ajustadas a los niños. Tales factores contribuyen directamente a un bajo rendimiento, desmotivación y abandono escolar.
+                    </p>
+                    <p class="mb-4 text-gray-700 leading-relaxed">
+                        <strong>El propósito de esta guía es simple:</strong> orientarte en el uso de técnicas de estudio efectivas, facilitar tu adaptación, mejorar tu comprensión de los contenidos y fortalecer tu permanencia en la escuela. Queremos que te sientas empoderado/a desde el inicio.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Utiliza la navegación a la izquierda para explorar las estrategias específicas para cada materia. ¡Mucho éxito en tu primer semestre!
+                    </p>                `,
+                // URL de ejemplo para el fundamento de evidencia en la sección de inicio
+                evidenceUrl: "https://drive.google.com/file/d/1c8aeTL37jMfuH2kdUqy1OXSscOlpO2ar/preview" // PDF del proyecto completo
+            },
+            algebra: {
+                title: "📐 Álgebra: Fundamentos para el Razonamiento Lógico",
+                introduction: "El álgebra es una de las ramas principales de las matemáticas e involucra expresiones con letras que representan números. Se centra en la comprensión de patrones, la formulación de ecuaciones y la resolución sistemática de ecuaciones para encontrar valores desconocidos. El dominio del álgebra es esencial para diversas disciplinas científicas y técnicas.",
+                commonProblems: [
+                    "Dificultad para comprender conceptos abstractos (uso de literales, resolución de ecuaciones).",
+                    "Ansiedad matemática y bloqueo mental ante problemas nuevos o complejos.",
+                    "Falta de práctica sistemática y dificultad para aplicar conocimientos a contextos reales.",
+                    "Lagunas formativas de la secundaria en fundamentos matemáticos.",
+                    "Carga académica excesiva y ausencia de métodos de enseñanza individualizados."
+                ],
+                strategies: [
+                    {
+                        name: "Ejercicios guiados paso a paso",
+                        description: "Resolución colaborativa de problemas representativos con el docente o un tutor, desglosando cada paso del proceso. El objetivo es generar confianza y comprender la lógica detrás de cada proceso.",
+                        steps: [
+                            "Seleccionar un problema representativo (por ejemplo, resuelva una ecuación lineal simple).",
+                            "Identificar las variables y operaciones involucradas.",
+                            "Desglosar cada paso de la solución y verbalizar la razón de cada acción.",
+                            "Verificar el resultado reemplazando el valor de la ecuación original."
+                        ],
+                        recommendations: "Practicar 20 minutos al día con un compañero o tutor. No se limite a copiar, sino que explique en voz alta el motivo de cada paso."
+                    },
+                    {
+                        name: "Uso de palabras simples para definir conceptos",
+                        description: "Traducir las definiciones algebraicas formales a un lenguaje cotidiano o a analogías que resulten más comprensibles. Esto ayuda a superar la abstracción.",
+                        steps: [
+                            "Leer la definición formal de un concepto (p. ej. ¿Qué es una 'variable'?).",
+                            "Reescribirlo con analogías o ejemplos de la vida real.",
+                            "Compartirlo en voz alta con un compañero o explícalo a otra persona para asegurarte de que lo entiendes.",
+                            "Aplicarlo en un ejemplo práctico para ver cómo se utiliza el concepto en la resolución de problemas."
+                        ],
+                        recommendations: "Crear un glosario personal de términos con tus propias definiciones y analogías. Usa dibujos o diagramas sencillos."
+                    },
+                    {
+                        name: "Mapas conceptuales de métodos de resolución",
+                        description: "Diagramar visualmente las rutas de solución para diferentes tipos de ecuaciones (ej. lineales). Es bueno enumerar los pasos y recordar los métodos.",
+                        steps: [
+                            "Identificar el tipo de ecuaciones bajo consideración (por ejemplo, ecuaciones lineales en una incógnita).",
+                            "Dibuja tales nodos para métodos o pasos de solución distintos.",
+                            "Vincula las secuencias con flechas que representen la solución.",
+                            "Vuelve al mapa con ejemplos de la vida real y asegúrate de que cada paso también tenga sentido."
+                        ],
+                        recommendations: "Pegar esta tarjeta en un cuaderno o en la pared de estudio para que la veas todo el tiempo. No olvides actualizar el mapa a medida que se adquieran nuevas técnicas."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de un ejercicio guiado (resolución de ecuaciones lineales)",
+                        content: `
+                            <p><strong>Problema:</strong> Resuelve $x:3x-7=8$</p>
+                            <p><strong>Paso 1 (identificación):</strong> La variable es x. Las operaciones son multiplicación (3x) y resta (-7). Queremos hallar el valor de x.</p>
+                            <p><strong>Paso 2 (Desglose):</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Para aislar el término con x, añadimos 7 a ambos lados de la ecuación: $3x-7+7=8+7~3x=15$</li>
+                                <li>Para aislar x, dividimos los dos lados por 3: $3x/3=15/3~x=5$</li>
+                            </ul>
+                            <p><strong>Paso 3 (Verificar):</strong> Reemplace $x=5$ en la ecuación original: $3 (5) - 7=8~15-7=88=8$ (el resultado es correcto).</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de un concepto simplificado (factorización)",
+                        content: `
+                            <p><strong>Concepto formal:</strong> "Factorizar un polinomio significa expresarlo como un producto de polinomios de grado inferior".</p>
+                            <p><strong>Definición/analogía simple:</strong> "Imagina que tienes un número grande, como 12. El factoreo consiste en descubrir los números más pequeños (factores) que, al multiplicarse juntos, te darán un número mayor (por ejemplo, $2\\times6$ o $3\\times4$). En álgebra, "factorizamos" (lo contrario de multiplicar) expresiones más complicadas de la misma manera: las "descomponemos" en expresiones más simples que, al multiplicarse, devuelven la expresión original. Esto nos ayuda a entenderlas o a simplificarlas.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/17TiFDfWycKXFUbGzfI6Ct3h3Sztb3Yd2/preview" // Ejemplo de PDF para Álgebra
+            },
+            dhp: {
+                title: "🧠 Desarrollo de Habilidades del Pensamiento (DHP): Cultivando la Cognición",
+                introduction: "DHP es un área temática para reforzar y aprovechar los procesos mentales fundamentales que los estudiantes utilizan para aprender, analizar, comprender y resolver. No se trata de memorizar hechos; se trata de aprender a pensar y hacerlo de manera más eficiente. El objetivo es equipar a los estudiantes con habilidades metacognitivas que les permitan ser más conscientes de su proceso mental.",
+                commonProblems: [
+                    "Carencia de hábitos de estudio efectivos y dificultades para mantener la concentración.",
+                    "Dificultad en la aplicación de procesos cognitivos de orden superior (análisis, síntesis, evaluación).",
+                    "Baja motivación y desafíos en el autocontrol emocional.",
+                    "Temas extensos que demandan memoria, percepción, razonamiento, creatividad y atención.",
+                    "Factores metodológicos, personales (ausentismo, falta de estudio) y sociales que influyen en la reprobación."
+                ],
+                strategies: [
+                    {
+                        name: "Diario Metacognitivo: Pensar sobre cómo piensas",
+                        description: "Aquí es donde se les pide a los estudiantes que piensen en voz alta sobre su propio pensamiento al resolver un problema o aprender sobre una idea. Nuestro objetivo es que se vuelvan conscientes de las técnicas que aplican (o no aplican), de los errores que suelen cometer y de sus fortalezas.",
+                        steps: [
+                            "Seleccionar una tarea académica (leer un párrafo desafiante, resolver un problema lógico, esbozar un ensayo).",
+                            "Antes de comenzar, pregúntate: '¿Qué sé? ¿Qué estrategia usaré?' (Planificación).",
+                            "Mientras trabajas en tu tarea pregúntate: '¿Lo entiendo? ¿Tiene sentido? ¿Qué hago si estoy atascado?' (Monitoreo).",
+                            "Finalmente, intenta canalizar ese diálogo interno en tu cabeza, '¿Qué aprendí esta vez? ¿Qué hice bien? ¿Qué podría intentar de manera diferente la próxima vez? ¿Cómo traduzco esto a otra cosa?' (Evaluación y Transferencia)."
+                        ],
+                        recommendations: "Mantén un diario de pensamientos, registra tus pensamientos después de cada sesión de estudio. Revisa tu experiencia con un compañero para obtener nuevas perspectivas."
+                    },
+                    {
+                        name: "Actividades de pensamiento visible (mapas mentales, diagramas de flujo)",
+                        description: "Consiste en llevar el pensamiento al mundo exterior a través de representaciones visuales. Esto hace que los procesos mentales sean más tangibles y fáciles de analizar y compartir. Es particularmente útil para los temas de observación, comparación, clasificación, análisis y síntesis.",
+                        steps: [
+                            "Elija un tema o concepto complejo (por ejemplo, 'los pasos en el proceso de lectura').",
+                            "Comienza con la idea central en medio de tu trabajo.",
+                            "Agregue ramas para las ideas principales mediante el uso de palabras clave e imágenes.",
+                            "Conecta las ramas con flechas para mostrar las relaciones.",
+                            "Revise el mapa para asegurarse de que refleje su comprensión del tema."
+                        ],
+                        recommendations: "Practicar la mente y los mapas conceptuales con el currículo de todas las materias. Usa colores y diseños para hacerlos más atractivos y memorables."
+                    },
+                    {
+                        name: "Juegos y retos lógicos/creativos",
+                        description: "Incorporar actividades lúdicas que desafíen el pensamiento lateral, la resolución de problemas y la creatividad. Esto reduce la presión y hace que el aprendizaje sea más emocionante.",
+                        steps: [
+                            "Busca en línea o en libros adivinanzas, juegos de lógica, adivinanzas o 'problemas de pensamiento lateral'.",
+                            "Trata de resolverlos individualmente y toma nota del proceso de pensamiento.",
+                            "Luego, discuta las soluciones y los diferentes enfoques con un grupo de estudio."
+                        ],
+                        recommendations: "Dedicar de 15 a 20 minutos a la semana a resolver una tarea lógica. No te rindas tan fácilmente; La perseverancia es una habilidad reflexiva en sí misma."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de un ejercicio guiado (resolver un problema de lógica simple)",
+                        content: `
+                            <p><strong>Problema:</strong> "Si todos los gatos son mamíferos y Félix es un gato, ¿es Félix un mamífero?"</p>
+                            <p><strong>Paso 1 (planificación metacognición):</strong> "Está bien, este es un problema lógico. Sé que necesito identificar la información clave y ver si hay una conclusión lógica que se pueda sacar. Creo que usaré un gráfico o una lista simple para visualizar las relaciones."</p>
+                            <p><strong>Paso 2 (seguimiento proceso de pensamiento):</strong> "La primera afirmación es: 'Todos los gatos son mamíferos'. Esto significa que si algo es un gato, automáticamente está en el grupo de los mamíferos. El segundo es 'Félix es un gato'. Ah, entonces si Félix es un gato, y todos los gatos son mamíferos, entonces Félix debe ser un mamífero. ¿Me salto un paso? No, eso suena fácil."</p>
+                            <p><strong>Paso 3 (Evaluación - Metacognición):</strong> "Lo resolví correctamente. La estrategia de combinar ideas funcionó. Para problemas más complejos, es posible que debas dibujar un diagrama de Venn. He aprendido que identificar premisas claras es el primer paso."</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de un ejercicio (mapa mental sobre el 'proceso de observación')",
+                        content: `
+                            <p><strong>Concepto central:</strong> Proceso de observación</p>
+                            <p><strong>Principales industrias:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Definición: Atención consciente al detalle, percepción activa.</li>
+                                <li>Tipos: Directo (ver), indirecto (leer, escuchar).</li>
+                                <li>Elementos: objeto/sujeto, finalidad, significado implicado.</li>
+                                <li>Pasos (con subramas):
+                                    <ul class="list-circle list-inside ml-4">
+                                        <li>Primer contacto (percepción general)</li>
+                                        <li>Identificación de atributos (características, partes)</li>
+                                        <li>Relación entre atributos (cómo se relacionan)</li>
+                                        <li>Inferencia (resultados preliminares)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p><strong>Ejemplo:</strong> Considere una flor: "Es roja, tiene 5 pétalos, un tallo verde, huele bien, crece en el jardín. (Atributos) Los pétalos están alrededor del centro. (Relación). Parece una rosa. (Conclusión)."</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de un ejercicio (rompecabezas de lógica)",
+                        content: `
+                            <p><strong>Acertijo:</strong> "Un hombre está atrapado en una habitación. El dormitorio tiene dos puertas. Detrás de una puerta hay un león que no ha comido nada en tres años. Detrás del otro hay un fuego. ¿Por qué puerta debería pasar?</p>
+                            <p><strong>Proceso de pensamiento (ejemplo):</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>"He leído el problema. Tengo dos opciones, león o fuego. Ambos suenan mal.</li>
+                                <li>"Volví a leer: 'León que no ha comido en TRES AÑOS'. Un león no puede vivir tres años sin comer. ¡Ah! Entonces el león debe estar muerto.</li>
+                                <li>"Si el león está muerto, la puerta del león está a salvo. El que quema no es.</li>
+                            </ul>
+                            <p><strong>Respuesta:</strong> Tiene que salir por la Puerta del León (porque tendría hambre).</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Razonamiento deductivo, atención al detalle, pensamiento lateral.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/1gU9YmIESZ8Tz_VN3VniygUFKvDK5oPO_/preview" // Ejemplo de DOC para DHP
+            },
+            expresion: {
+                title: "🗣️ Expresión Oral y Escrita I: La Base de la Comunicación Efectiva",
+                introduction: "Enseñar la expresión oral y escrita es una habilidad crucial para proporcionar a los estudiantes las herramientas que necesitan para desarrollar habilidades de comunicación tanto oral como escrita, ya sea hablando o escribiendo. Se centra en la enseñanza del lenguaje escrito y hablado, más allá del simple patrón de reglas gramaticales.",
+                commonProblems: [
+                    "Miedo escénico y ansiedad al hablar en público.",
+                    "Dificultad para la estructuración coherente y cohesiva de textos escritos.",
+                    "Déficit de vocabulario y precisión gramatical.",
+                    "Posibles déficits cognitivos (memoria de trabajo, fluidez) o trastornos del aprendizaje.",
+                    "Factores externos (motivación, problemas familiares) que afectan el rendimiento."
+                ],
+                strategies: [
+                    {
+                        name: "Textos 'Desarme' y 'Reeder'",
+                        description: "Esta estrategia consiste en analizar textos bien escritos para identificar sus estructuras, y luego replicar esas estructuras con tus propias ideas. Ayuda a entender la cohesión y la coherencia.",
+                        steps: [
+                            "Lee y analiza: Elige un párrafo o texto corto que esté bien escrito. Identifica la cláusula principal, las ideas complementarias, las conexiones lógicas y la estructura general.",
+                            "Desglose: Subraye o resalte cada elemento identificado.",
+                            "Replica la estructura: Toma un tema diferente y usa la misma estructura dada en el texto de la plantilla y escribe tu propio párrafo o texto.",
+                            "Revisar y calificar conjuntamente: Intercambie textos con un compañero y revíselos juntos."
+                        ],
+                        recommendations: "Comience con párrafos simples y avance hasta textos más complejos. Usa plantillas de texto o 'esqueletos' como guía. Lee tus propios textos en voz alta para identificar errores en el flujo."
+                    },
+                    {
+                        name: "Grabación y autoanálisis para la expresión oral",
+                        description: "Es para captarte a ti mismo cuando haces una exposición o explicas un tema. A continuación, se escucha la grabación para identificar las fortalezas y las áreas de mejora en términos de dicción, fluidez, volumen, tono de voz y habla no verbal (si se graba en vídeo).",
+                        steps: [
+                            "Prepara una breve presentación: elige un tema o concepto interesante de otro tema que quieras explicar.",
+                            "Grabar: Utilice su teléfono móvil o cámara web para grabarse durante la presentación.",
+                            "Escuchar/ver y calificar: Escuche la grabación y califique su rendimiento utilizando una lista de verificación.",
+                            "Practique y repita: Con base en la evaluación, concéntrese en 1 o 2 áreas de mejora y vuelva a registrarlas comparando el progreso."
+                        ],
+                        recommendations: "Practica en privado para reducir la vergüenza inicial. Concéntrese en una o dos habilidades de expresión oral por sesión. Pídele a un amigo de confianza que te escuche y te dé comentarios constructivos."
+                    },
+                    {
+                        name: "Workshop zum Thema 'Puntuando Errores Frecuentes'",
+                        description: "Ejercicios prácticos que identifican y corrigen errores comunes de puntuación (coma, punto y coma, punto, dos puntos) en oraciones y párrafos para comprender sus implicaciones para el significado.",
+                        steps: [
+                            "Proporcionar oraciones o párrafos con errores de puntuación intencionales.",
+                            "En grupos pequeños o individualmente, los estudiantes identifican errores y sugieren correcciones.",
+                            "Como clase, analicen las diferentes correcciones y cómo la puntuación afecta el significado de la oración.",
+                            "Crea tus propias oraciones con ejemplos de puntuación correcta e incorrecta."
+                        ],
+                        recommendations: "Concéntrese primero en los signos de puntuación más comunes (coma, punto). Intenté con un 'semáforo', calificando un intento como luz roja si fue un error grave, amarilla si hubo una mejora y verde si fue un éxito."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de un ejercicio guiado (escribir párrafos de exposición)",
+                        content: `
+                            <p><strong>Problema:</strong> Escribe un párrafo explicativo sobre el tema "La importancia de la actividad física en la vida de los adolescentes".</p>
+                            <p><strong>Texto de la plantilla (estructura a imitar):</strong></p>
+                            <p>"La energía solar es una fuente de energía renovable que ofrece varios beneficios. En primer lugar, su uso no produce emisiones contaminantes, lo que contribuye a la protección del clima. Además, el sol es una fuente inagotable que asegura un suministro continuo de energía a largo plazo. Por lo tanto, invertir en tecnología solar es crucial para un futuro sostenible.</p>
+                            <p><strong>Paso 1 (Identificación de la estructura):</strong> oración principal, "primero" (primer argumento), "adicional" (segundo argumento), "por lo tanto" (conclusión/afirmación).</p>
+                            <p><strong>Paso 2 (Replica la estructura con el nuevo tema):</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Cláusula principal: "La actividad física regular juega un papel esencial en la vida de los adolescentes".</li>
+                                <li>Primer argumento (conector): "En primer lugar, contribuye significativamente a la salud física, al fortalecimiento de los huesos y los músculos, y a la prevención de enfermedades crónicas".</li>
+                                <li>Segundo argumento (conector): "También tiene un efecto positivo en tu bienestar mental, reduce el estrés y la ansiedad, y mejora el estado de ánimo".</li>
+                                <li>Conclusión (conector): "Por lo tanto, fomentar el ejercicio en esta etapa es esencial para un desarrollo pleno y saludable".</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (breve presentación oral)",
+                        content: `
+                            <p><strong>Problema:</strong> Explique las 3 ideas principales de un texto que leyó sobre otro tema (por ejemplo, DHH).</p>
+                            <p><strong>Lista de verificación de autoevaluación:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>¿Mi voz es clara y audible? (Volumen)</li>
+                                <li>¿Estoy hablando a un ritmo razonable sin ser demasiado rápido o demasiado lento? (Flujo/Ritmo)</li>
+                                <li>¿Utilizo pausas para resaltar ideas?</li>
+                                <li>¿Evito las muletillas ("esto", "bueno", "entonces")?</li>
+                                <li>¿Mi tono es variado o monótono?</li>
+                                <li>¿Explico las ideas de forma lógica y organizada?</li>
+                                <li>(Si es un video) ¿Mantengo el contacto visual? ¿Mi lenguaje corporal es abierto y seguro?</li>
+                            </ul>
+                            <p><strong>Medir:</strong> Si utilizo muchas palabras de relleno, me concentraré en reducirlas conscientemente en la siguiente toma. Si mi voz es monótona, trato de variar el tono para enfatizar los puntos más importantes.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (puntuación corregida)",
+                        content: `
+                            <p><strong>Problema:</strong> Corregir la puntuación en la siguiente oración: "Comámonos a los niños."</p>
+                            <p><strong>Análisis:</strong> Sin una coma, la oración sugiere comer por sí misma. Coma: una invitación a cenar.</p>
+                            <p><strong>Corrección:</strong> Se trata de "Comamos, niños".</p>
+                            <p><strong>Otro ejemplo:</strong> "El examen fue fácil, pero casi nadie puede aprobarlo."</p>
+                            <p><strong>Corrección:</strong> "El examen fue fácil, pero muy pocos aprobaron." (O: "El examen fue fácil, aunque pocos aprobaron.")</p>
+                            <p><strong>Habilidades enseñadas:</strong> Perfeccionando la gramática (con estilo), apreciando el poder de la puntuación.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/1_PY6F5THQJuiCOCe9l5So4fQs1HsKHK0/preview" // Ejemplo de PPT para Expresión Oral y Escrita
+            },
+            desarrollo_personal: {
+                title: "🌱 Desarrollo Personal: Autoconocimiento y Bienestar Integral",
+                introduction: "El desarrollo personal es una unidad de aprendizaje con el objetivo general de ofrecer al nuevo estudiante la herramienta para tener una percepción clara de sí mismo y de su proyecto personal. No se trata de conocimientos escolares clásicos, sino de autoconocimiento, inteligencia emocional y el desarrollo de competencias socioemocionales, que van de la mano con el éxito académico y con la vida en general.",
+                commonProblems: [
+                    "Falta de autoconocimiento y manejo emocional efectivo.",
+                    "Baja motivación y compromiso percibido como insuficiente con la materia.",
+                    "Dificultades para establecer metas claras y planificar acciones para alcanzarlas.",
+                    "Percepción de la materia como no prioritaria, desinterés estudiantil.",
+                    "Impacto de factores sociales, familiares, psicológicos y económicos en el desarrollo personal."
+                ],
+                strategies: [
+                    {
+                        name: "Diario de Emociones y Reflexión",
+                        description: "Consiste en escribir de manera personal las emociones experimentadas a lo largo del día, la situación que las provocó y la reacción. Esto promueve el desarrollo de la inteligencia emocional y el autoconocimiento.",
+                        steps: [
+                            "Registra la fecha y hora.",
+                            "Anota las principales emociones sentidas (p. ej., frustración, alegría, estrés, calma).",
+                            "Describe la situación que lo causó: ¿Qué pasó? ¿Con quién has estado?",
+                            "Describe tu reacción: ¿Cómo te has comportado? ¿Qué dijiste o hiciste?",
+                            "Reflexiona: ¿Por qué sentiste esta emoción? ¿Fue una reacción apropiada? ¿Qué podrías haber hecho de manera diferente? ¿Qué aprendiste de esta experiencia?"
+                        ],
+                        recommendations: "Sé honesto contigo mismo sin juzgar las emociones. No es la perfección lo que se busca, sino la conciencia. Después de unas semanas, revise el registro para identificar patrones."
+                    },
+                    {
+                        name: "Asertividad en el juego de roles",
+                        description: "Practicar situaciones de comunicación desafiantes en un entorno seguro y simular escenarios de la vida real para desarrollar la asertividad y la empatía.",
+                        steps: [
+                            "En parejas o grupos pequeños, elija un escenario común que requiera asertividad.",
+                            "Asigna roles (uno que debe ser asertivo, otro que represente la 'situación', o la otra persona).",
+                            "Desarrolla la situación, enfocándote en el lenguaje corporal, el tono de voz y la elección de palabras.",
+                            "Después de la actuación, el resto del grupo y los actores dan una retroalimentación constructiva sobre lo que funcionó bien y lo que se podría mejorar."
+                        ],
+                        recommendations: "Comience con escenarios simples y aumente la complejidad. Enfócate en 'Yo siento...' y 'Necesito...' en lugar de 'tú mensajes'."
+                    },
+                    {
+                        name: "Panel de Visión y Metas",
+                        description: "Cree un collage visual de imágenes, palabras y frases que representen las metas, sueños y aspiraciones a corto y largo plazo del estudiante. Ayuda a visualizar y mantener la motivación para el proyecto de vida.",
+                        steps: [
+                            "Colecciona revistas, periódicos, imprime imágenes o utiliza herramientas digitales.",
+                            "Piensa en metas en diferentes áreas: académica, personal, profesional, social.",
+                            "Recorta/selecciona imágenes y palabras que representen estos objetivos e insértelos/organícelos en un póster o documento digital.",
+                            "Escribe una oración personal o una 'declaración de misión' en el medio.",
+                            "Coloca el letrero en un lugar visible para recordarlo todos los días."
+                        ],
+                        recommendations: "Sé específico y realista con tus metas. Revise y actualice el panel de control con regularidad a medida que evolucionan los objetivos. Comparte el panel con un tutor o mentor."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de ejercicio guiado (análisis de una situación estresante)",
+                        content: `
+                            <p><strong>Problema:</strong> Me siento muy estresado por el próximo examen de álgebra.</p>
+                            <p><strong>Entrada de registro:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Emociones: Estrés, ansiedad, un poco de frustración.</li>
+                                <li>Situación: Estudios de álgebra, tengo la sensación de que no entiendo una materia, se acerca la fecha del examen.</li>
+                                <li>Reacción: Me estoy congelando, estoy empezando a procrastinar, quiero rendirme, me digo a mí mismo "no soy bueno en eso".</li>
+                                <li>Reflexión: Me siento estresado porque tengo miedo de fracasar. Mi reacción de paralizarme no me ayuda a aprender. ¿Qué puedo hacer de manera diferente? Tal vez pida ayuda al maestro, estudie en grupo o divida el tema en partes más pequeñas. Me doy cuenta de que mi autoestima se ve afectada cuando pienso que no puedo hacerlo.</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de un ejercicio (afirmarse al pedir ayuda)",
+                        content: `
+                            <p><strong>Escenario:</strong> El profesor te ha dado una explicación que no entendiste del todo y necesitas que te la repita.</p>
+                            <p><strong>Rendimiento no asertivo (tímido/agresivo):</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Tímido: "Profesor, eh... Pozo... No sé si... No entiendo nada, ¿puedo repetir esto? (Una vocecita que mira al suelo.)</li>
+                                <li>Agresivamente: "Profesor, no me lo explicó bien, no entendí nada, tiene que repetirlo". (Voz fuerte, de reproche.)</li>
+                            </ul>
+                            <p><strong>Acción asertiva (ejemplo):</strong></p>
+                            <p>"Profesor, discúlpeme, tengo dudas particulares sobre el punto X que usted mencionó. ¿Podría, por favor, explicármelo de nuevo o darme un ejemplo para entenderlo mejor? (Voz clara, contacto visual, tono respetuoso).</p>
+                            <p><strong>Habilidades desarrolladas:</strong> autoestima, comunicación efectiva, resolución de conflictos.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (creación de un panel de visión)",
+                        content: `
+                            <p><strong>Elementos del panel:</strong> Una foto de un graduado, el logo de NPI, libros, una calculadora (si es una profesión de ingeniería), una foto de un lugar que quieras visitar, palabras como "éxito", "perseverancia", "aprendizaje", "salud", "felicidad", "amigos".</p>
+                            <p><strong>Declaración de misión personal:</strong> "Ser una persona con integridad y conocimiento, contribuir a la comunidad a través del conocimiento y la empatía, lograr metas académicas y construir relaciones significativas".</p>
+                            <p><strong>Habilidades desarrolladas:</strong> planificación, motivación, visualización, toma de decisiones.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/1YMVR0nVQgBpyIiFDnuiAHyXCh4JE8ofm/preview" // Ejemplo de PDF para Desarrollo Personal
+            },
+            historia: {
+                title: "📜 Historia I: Entendiendo Nuestro Pasado Reciente",
+                introduction: "La historia del México contemporáneo I es una disciplina que va más allá de memorizar fechas y nombres. Actúa como una herramienta para comprender el presente a través del análisis crítico de los procesos históricos y sociales que han moldeado la nación mexicana en su escena actual. La asignatura enseña a los alumnos a interpretar diferentes fuentes, a identificar las causas y consecuencias de los acontecimientos, a analizar diferentes perspectivas historiográficas y a construir una posición personal a partir de hechos históricos.",
+                commonProblems: [
+                    "Sobrecarga de fechas y eventos sin el contexto histórico adecuado.",
+                    "Incapacidad para establecer relaciones de causa y efecto entre acontecimientos.",
+                    "Aprendizaje reducido a la memorización de datos sin comprensión genuina.",
+                    "Percepción de la Historia como 'innecesaria' o 'aburrida', generando desinterés.",
+                    "Deficiencias en habilidades de lectura crítica, análisis y argumentación."
+                ],
+                strategies: [
+                    {
+                        name: "Líneas de tiempo interactivas de varios niveles",
+                        description: "No te limites a enumerar datos, crea líneas de tiempo que incluyan eventos políticos, económicos y sociales simultáneos y sus causas y consecuencias para visualizar el entrelazamiento de los hechos históricos.",
+                        steps: [
+                            "Elija un período o tema clave (por ejemplo, el Porfiriato o la Revolución Mexicana).",
+                            "En una hoja de papel grande o en una herramienta digital, dibuja una línea horizontal que represente el tiempo.",
+                            "Agregue una 'capa' para eventos políticos, otra para negocios y otra para eventos sociales / culturales.",
+                            "Coloque los eventos clave en cada nivel que indiquen las causas (flechas hacia atrás) y las consecuencias (flechas hacia adelante).",
+                            "Usa colores para distinguir entre tipos de eventos o facciones."
+                        ],
+                        recommendations: "Comienza con plazos cortos y muy específicos. Cree una línea de tiempo compartida con un socio para enriquecer la información y los datos."
+                    },
+                    {
+                        name: "Examen de las perspectivas históricas",
+                        description: "Asignar a los estudiantes diferentes corrientes o visiones historiográficas de un mismo acontecimiento (por ejemplo, Porfiriato como 'Orden y Progreso' en contraposición a 'Dictadura y Desigualdad') para que puedan examinar y defender esta posición en un debate.",
+                        steps: [
+                            "Elija un evento o personaje controvertido de la agenda (por ejemplo, Porfirio Díaz).",
+                            "Divida la clase en grupos y asigne una perspectiva a cada grupo.",
+                            "Cada grupo examina los argumentos y la evidencia que respaldan su posición.",
+                            "Organice un debate formal o informal en el que los grupos presenten sus argumentos y refuten los de los demás.",
+                            "Después del debate en grupo, reflexione sobre las diferentes perspectivas, la complejidad de la historia y la construcción de una posición crítica."
+                        ],
+                        recommendations: "Asegurarse de que los estudiantes entiendan que el objetivo es comprender diferentes interpretaciones, y no necesariamente 'ganar' un debate. Concéntrese en la solidez de los argumentos y la evidencia."
+                    },
+                    {
+                        name: "Estudio de caso y conexión con el presente",
+                        description: "Seleccionar un evento o proceso histórico específico y analizar cómo sus consecuencias o legado se manifiestan en el presente mexicano.",
+                        steps: [
+                            "Elija un tema de la agenda (por ejemplo, la constitución de 1917, la reforma agraria posrevolucionaria).",
+                            "Examinar el evento en sí (sus causas, curso y consecuencias inmediatas).",
+                            "Luego, examina cómo ese evento o sus principios se reflejan en la sociedad, la política o la economía mexicana en la actualidad.",
+                            "Presente los resultados con un breve ensayo, una presentación o un mural."
+                        ],
+                        recommendations: "Elegir temas que se acerquen a la realidad de los estudiantes o que tengan un impacto claro y visible en su entorno. Usar un artículo de noticias o de opinión que haga el mismo punto."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de ejercicio guiado (cronología de Porfiriatos)",
+                        content: `
+                            <p><strong>Período:</strong> 1876 (inicio del Porfiriato) - 1911 (fin del Porfiriato).</p>
+                            <p><strong>Niveles:</strong> Política, Economía, Sociedad.</p>
+                            <p><strong>Eventos importantes:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Política: 1876: Plan de Tuxtepec (inicio del Díaz), 1884: reelección del Díaz, 1910: reelección (detonante de la revolución).</li>
+                                <li>Economía: Inversión extranjera, desarrollo del ferrocarril, auge minero y agropecuario (haciendas), desigualdad agrícola.</li>
+                                <li>Sociedad: Paz forzada, opresión de los opositores, crecimiento urbano, migración campesina, surgimiento de la clase media emergente.</li>
+                            </ul>
+                            <p><strong>Contexto:</strong> El desarrollo del ferrocarril (economía) facilitó el control político del país y la movilización de tropas (político). La desigualdad (económica) en la agricultura fue una causa directa de la revolución (social).</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (debate sobre el porfiriato)",
+                        content: `
+                            <p><strong>Posición 1 (Positivista/Orden y Progreso):</strong> Afirmación de que después de décadas de caos, Díaz trajo estabilidad política, alentó la inversión extranjera, modernizó la infraestructura (ferrocarriles, telégrafos) y sentó las bases para el crecimiento económico.</p>
+                            <p><strong>Posición 2 (Materialismo Histórico/Crítica Social):</strong> Argumentar que el Porfiriato fue una dictadura que suprimió las libertades, exacerbó las desigualdades sociales y económicas (concentración de la tierra, bajos salarios) y que la "paz" se logró a expensas de la justicia social, que sembró las semillas de la revolución.</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Pensamiento crítico, análisis de fuentes, razonamiento, empatía histórica, construcción de una actitud personal.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo: Enfoquémonos en el siguiente dispositivo heredado (Colonial)",
+                        content: `
+                            <p><strong>Sujeto:</strong> Constitución Política de los Estados Unidos Mexicanos de 1917</p>
+                            <p><strong>Análisis genérico:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>¿Cuál fue el contexto de su creación?</li>
+                                <li>¿Por qué fue creada?</li>
+                                <li>Sus contribuciones más relevantes (artículos 3, 27, 123).</li>
+                                <li>¿Cuáles fueron los problemas de la época que intentaba resolver?</li>
+                            </ul>
+                            <p><strong>Relevancia para el presente:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>¿Cómo interpreta México hoy en día el Artículo 3 (educación laica y gratuita)?</li>
+                                <li>¿Existen problemas al usarlo?</li>
+                                <li>¿Qué impacto tiene el Artículo 27 (propiedad de la tierra) y las disputas en curso relacionadas con recursos naturales y el bienestar de las comunidades indígenas?</li>
+                                <li>¿Es todavía útil para los trabajadores mexicanos el Artículo 123 (Derechos Laborales)?</li>
+                            </ul>
+                            <p><strong>Habilidades desarrolladas:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Análisis histórico-social</li>
+                                <li>Pensamiento crítico</li>
+                                <li>Contextualización</li>
+                                <li>Educación cívica</li>
+                                <li>Uso del conocimiento histórico</li>
+                            </ul>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/1yLQ3ar90Yeb9wOtA9Ogcrk3XVTPDL7Ha/preview" // Ejemplo de PDF para Historia
+            },
+            filosofia: {
+                title: "🤔 Filosofía I: Una reflexión ética y humana",
+                introduction: "Filosofía I es un curso que invita a pensar... '¿Pero, qué significa pensar?' No se trata de aprender de memoria, dogmas o teorías, sino de aprender a cuestionar ideas abstractas, a discutirlas, a argumentar de manera coherente. Este tema aborda la naturaleza del ser humano como agente moral, la diversidad de sistemas éticos y el impacto de los valores y normas en el comportamiento social.",
+                commonProblems: [
+                    "Alto nivel de abstracción y lenguaje especializado en textos filosóficos.",
+                    "Falta de hábitos de lectura reflexiva y profunda.",
+                    "Dificultades al construir argumentos coherentes y estructurar ideas complejas.",
+                    "Incomprensión por explicaciones deficientes o falta de contextualización.",
+                    "Necesidad de una base sólida en lectura, análisis y argumentación."
+                ],
+                strategies: [
+                    {
+                        name: "Ejercicios Socráticos de Preguntas y Definiciones",
+                        description: "Consiste en hacer preguntas profundas sobre conceptos filosóficos (p. ej. ¿Qué es la libertad? ¿Qué es la justicia?) para desentrañar su significado, identificar hipótesis y desarrollar sus propias definiciones a partir de la reflexión.",
+                        steps: [
+                            "Elija un concepto clave del programa (por ejemplo, 'responsabilidad', 'dignidad', 'libertad').",
+                            "En grupos o individualmente, escriba una definición inicial del concepto.",
+                            "Haz una serie de preguntas de seguimiento: '¿Cuáles son las implicaciones de esta definición?', '¿Qué pasa si aplicamos este concepto en esta situación?', '¿Siempre es así o hay excepciones?', '¿Qué no es este concepto?'.",
+                            "Refina la definición inicial en función de las respuestas a las preguntas.",
+                            "Busca ejemplos del mundo real que ilustren el concepto y contraejemplos que lo desafíen."
+                        ],
+                        recommendations: "Comience con términos que ya se usan en el lenguaje cotidiano para ver la diferencia entre la definición cotidiana y la definición filosófica. Utiliza casos hipotéticos o dilemas morales para aplicar conceptos."
+                    },
+                    {
+                        name: "Análisis de dilemas éticos",
+                        description: "Presente a los estudiantes dilemas morales complejos y pídales que los analicen desde la perspectiva de diferentes teorías éticas y justifiquen sus decisiones.",
+                        steps: [
+                            "Seleccione un dilema ético relevante (p. ej., ¿Mentir para proteger a alguien?, ¿La pena de muerte?, ¿La inteligencia artificial y sus implicaciones éticas?).",
+                            "Presente brevemente 2 o 3 doctrinas éticas (por ejemplo, el utilitarismo, deontología, ética de la virtud).",
+                            "Invite a los alumnos a decidir individualmente o en grupos cómo actuarían en el dilema y a justificar su decisión basándose en una o más de las doctrinas estudiadas.",
+                            "Moderación de una discusión en clase en la que se discuten diversas soluciones y justificaciones."
+                        ],
+                        recommendations: "Elegir dilemas que sean comprensibles y que no generen un conflicto emocional excesivo. Hay que tener en cuenta que no hay una sola 'respuesta correcta', sino razones más o menos sólidas."
+                    },
+                    {
+                        name: "Glosario de Ética Profesional Aplicada",
+                        description: "Ampliar la actividad mencionada en el programa para que los estudiantes no solo definan los términos de la ética profesional, sino que también identifiquen situaciones reales o hipotéticas en sus futuras carreras donde estos conceptos sean cruciales.",
+                        steps: [
+                            "Investigue y seleccione al menos 5-7 términos clave relacionados con la ética profesional.",
+                            "Para cada término: Define el concepto con tus propias palabras; Investiga o piensa en un ejemplo concreto de cómo este principio ético se aplica (o no se aplica) a la profesión técnica que estás estudiando; Imagina un dilema ético específico al que podrías enfrentarte en tu futura profesión relacionado con este término.",
+                            "Presenta tu glosario en un formato creativo (digital, póster, tarjeta)."
+                        ],
+                        recommendations: "Entrevista a profesionales de la profesión que te interesa para obtener ejemplos del mundo real. Discuta las implicaciones éticas de las diferentes profesiones en clase."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de ejercicio guiado (definición de 'libertad')",
+                        content: `
+                            <p><strong>Concepto:</strong> Liberté</p>
+                            <p><strong>Definición original:</strong> "Hacer lo que quieras".</p>
+                            <p><strong>Preguntas socráticas:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>"¿Todavía podemos hacer lo que queremos? ¿Qué pasa si lo que quiero hacer lastima a otros?</li>
+                                <li>"¿Es la libertad sólo la ausencia de restricciones externas o implica también autonomía interior (poder decidir por uno mismo)?"</li>
+                                <li>"¿Somos libres si nuestras acciones están determinadas por nuestra educación o nuestros genes?"</li>
+                                <li>"¿Cuál es la relación entre libertad y responsabilidad?"</li>
+                            </ul>
+                            <p><strong>Definición refinada:</strong> "La libertad es la capacidad de elegir y actuar de manera autónoma, de asumir la responsabilidad de nuestras decisiones y de considerar su impacto en los demás y en el medio ambiente".</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Pensamiento crítico, análisis conceptual, razonamiento, identificación de hipótesis.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de un ejercicio (dilema de entrenamiento)",
+                        content: `
+                            <p><strong>Dilema:</strong> Un tren se acerca y no puede detenerse. En su camino, 5 personas se adhieren a la pista. Puede tirar de una palanca para redirigir el tren a otra vía donde solo haya una persona conectada. ¿Qué harías y por qué?</p>
+                            <p><strong>Análisis utilitarista:</strong> Tirar de la palanca y sacrificar 1 para salvar 5 porque busca el mayor bien para la mayoría.</p>
+                            <p><strong>Análisis ético (posible):</strong> Se podría argumentar que tirar de la palanca significa una intervención activa para provocar la muerte de una persona, lo que podría ser moralmente reprobable (el deber de no matar), incluso si el resultado es salvar más. O el deber de proteger la vida tiene prioridad.</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Pensamiento ético, aplicación de teorías, análisis de impacto, pensamiento crítico.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (Glosario de Ética - Ingeniería de Sistemas Computacionales)",
+                        content: `
+                            <p><strong>Término:</strong> Confidencialidad</p>
+                            <p><strong>Definición:</strong> Compromiso de proteger la información privada y sensible de los clientes o usuarios.</p>
+                            <p><strong>Aplicación en Ingeniería de Sistemas:</strong> Un ingeniero de sistemas debe asegurarse de que los datos de usuario de una aplicación o base de datos estén encriptados y protegidos contra accesos no autorizados, incluso si tienen acceso técnico a ellos.</p>
+                            <p><strong>Dilema:</strong> Su empresa le pide que desarrolle un software que recopile más datos personales de los usuarios de los estrictamente necesarios para operar, y usted sabe que podría usarse con fines comerciales sin consentimiento explícito. ¿Qué estás haciendo?</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Conciencia de ética profesional, contextualización, aplicación de valores, pensamiento moral.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://docs.google.com/presentation/d/e/2PACX-1vSm0DrKCPs-JQMgJJJwg3psLaxJUEnfXvrhQ1DOJmoXgRsmJG0rZk-wGl0I0IAZJw/pubembed?start=false&loop=false&delayms=3000" // Ejemplo de PPT para Filosofía
+            },
+            ingles: {
+                title: "🌍 Inglés: Herramienta Esencial para el Futuro",
+                introduction: "La asignatura de inglés tiene como objetivo desarrollar habilidades comunicativas básicas (escuchar, hablar, leer y escribir) en un segundo idioma. Se trata de aprender vocabulario o reglas gramaticales de forma aislada, sino de comprender cómo se utilizan estas estructuras lingüísticas para construir significados y comunicarse de manera efectiva en situaciones cotidianas y académicas.",
+                commonProblems: [
+                    "Sobrecarga de reglas gramaticales y vocabulario, llevando a memorización sin aplicación.",
+                    "Falta de práctica auditiva y oral consistente.",
+                    "Miedo a cometer errores al hablar, inhibiendo la participación.",
+                    "Métodos de adquisición ineficaces o apoyo docente bilingüe insuficiente.",
+                    "Vacíos formativos previos y falta de herramientas para el nivel medio superior."
+                ],
+                strategies: [
+                    {
+                        name: "Cápsulas gramaticales con ejemplos contrastivos",
+                        description: "Crea mini-guías visuales o tarjetas didácticas que no solo expliquen la regla gramatical de un tiempo o estructura verbal, sino que la comparen directamente con un verbo similar y muestren ejemplos claros de cómo usarlo y cuándo NO usarlo.",
+                        steps: [
+                            "Elija dos temas gramaticales que a menudo se confunden (p. ej., tiempo presente simple vs. tiempo presente progresivo).",
+                            "En un mapa o tabla, anote la regla, el uso, las palabras clave y la estructura del primer tema en una columna. En la siguiente columna, haga lo mismo con la segunda columna.",
+                            "Agregue una tercera columna de oraciones que usen tiempos verbales o estructuras y explique por qué se eligió una y la otra no. También incluye oraciones incorrectas comunes y cómo corregirlas.",
+                            "Practica los ejercicios de 'Rellena los huecos' o 'Elige la opción correcta', en los que tienes que diferenciar entre las dos estructuras."
+                        ],
+                        recommendations: "Utilizar colores para distinguir los periodos de tiempo. Cree oraciones personalizadas sobre la vida de los estudiantes para que el aprendizaje sea más relevante. Revise estas cápsulas antes de cada sesión o examen."
+                    },
+                    {
+                        name: "Entrevistas y preguntas indirectas",
+                        description: "Practica hacer preguntas indirectas en una entrevista simulada, lo que mejorará la formalidad, la cortesía y la fluidez.",
+                        steps: [
+                            "En parejas, uno asume el papel de 'entrevistador' y el otro el de 'entrevistado'.",
+                            "El entrevistador crea una lista de preguntas directas.",
+                            "El entrevistador debe convertir estas preguntas directas en preguntas indirectas para hacerlas más formales o educadas.",
+                            "Realiza la entrevista, prestando atención a la estructura de las preguntas indirectas. Cambiar roles."
+                        ],
+                        recommendations: "Comience con preguntas indirectas simples (por ejemplo, '¿Puede decirme...?', '¿Sabe usted...?'), luego pase a estructuras más complejas. Grabe las entrevistas para la autoevaluación."
+                    },
+                    {
+                        name: "Noticias de voz pasiva",
+                        description: "Analice los titulares o extractos de artículos para identificar el uso de la voz pasiva y, a continuación, reescribir las oraciones en voz activa a la voz pasiva y viceversa. Esto nos permite entender la función y la utilidad contextual de esta estructura.",
+                        steps: [
+                            "Busca de 5 a 10 titulares o frases en inglés que usen la voz pasiva.",
+                            "Identifique el sujeto (quién obtiene la acción) y la forma del verbo 'ser' + participio pasado.",
+                            "Intente reescribir oraciones en voz activa si el agente es conocido o se puede inferir.",
+                            "Por el contrario, tome de 5 a 10 oraciones en voz activa y conviértalas en una voz pasiva y explique por qué se usa la voz pasiva en este contexto."
+                        ],
+                        recommendations: "Concéntrese en ejemplos donde el uso de la voz pasiva sea claro y tenga un propósito (por ejemplo, en mensajes, descripciones de procesos). Usa verbos regulares e irregulares en participio pasado."
+                    }
+                ],
+                examples: [
+                    {
+                        title: "Ejemplo de presente simple vs. presente progresivo",
+                        content: `
+                            <p><strong>Regla simple del presente:</strong> hábitos, hechos generales. Estructura: Sujeto + verbo (s/es para la 3ª persona del singular). Palabras clave: siempre, a menudo, todos los días.</p>
+                            <p><strong>Regla progresiva actual:</strong> Acciones ahora, acciones temporales. Estructura: Sujeto + am/is/are + verbo. Palabras clave: ahora, ahora, actual.</p>
+                            <p><strong>Ejemplos contrastantes:</strong></p>
+                            <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                <li>Así es: "Aprendo inglés todos los días". (Hábito)</li>
+                                <li>Correcto: "Estoy aprendiendo inglés ahora mismo." (Acción en progreso)</li>
+                                <li>Incorrecto: "Me gusta el chocolate". (El verbo estativo - 'como' no se usa en el progresivo).</li>
+                                <li>Así es: "Me encanta el chocolate".</li>
+                            </ul>
+                            <p><strong>Práctica:</strong> Completa la oración con el tiempo correcto del verbo:</p>
+                            <p>"Normalmente va a la escuela ____ (a pie), pero hoy ____ (toma) el autobús".</p>
+                            <p><strong>Respuesta:</strong> "Normalmente camina a la escuela, pero hoy toma el autobús".</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (preguntas de transformación)",
+                        content: `
+                            <p><strong>Pregunta directa:</strong> "¿Qué hora es?"</p>
+                            <p><strong>Pregunta indirecta:</strong> "¿Puede decirme qué hora es?" (Nótese el cambio en el orden de las palabras)</p>
+                            <p><strong>Pregunta directa:</strong> "¿Dónde está la biblioteca?"</p>
+                            <p><strong>Pregunta indirecta:</strong> "¿Sabes dónde está la biblioteca?"</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Fluidez oral, cortesía, precisión gramatical en las preguntas, confianza en la expresión oral.</p>
+                        `
+                    },
+                    {
+                        title: "Ejemplo de ejercicio (transformación de la voz activa/pasiva)",
+                        content: `
+                            <p><strong>Oración en Voz Activa:</strong> "Los científicos descubrieron un nuevo planeta el año pasado".</p>
+                            <p><strong>Análisis:</strong> La atención se centra en los "científicos".</p>
+                            <p><strong>Transformación pasiva de la voz:</strong> "El año pasado, los científicos descubrieron un nuevo planeta ". (Enfoque en el "nuevo planeta" y la acción).</p>
+                            <p><strong>Oración en voz pasiva:</strong> "El puente fue construido alrededor de 1900".</p>
+                            <p><strong>Análisis:</strong> El agente (que construyó el puente) es poco importante o desconocido.</p>
+                            <p><strong>Transformación en voz activa (si deducimos de ello):</strong> "Construyeron el puente en 1900".</p>
+                            <p><strong>Habilidades desarrolladas:</strong> Comprensión gramatical, escritura formal, análisis de textos, flexibilidad lingüística.</p>
+                        `
+                    }
+                ],
+                evidenceUrl: "https://drive.google.com/file/d/1VxyV8l084UKHv2yzJMqc5TYlpv2mRwIm/preview"
+            }
+        };
+
+        // Espera a que el DOM (Document Object Model) esté completamente cargado antes de ejecutar cualquier script.
+        // Esto asegura que todos los elementos HTML estén disponibles cuando el JavaScript intente interactuar con ellos.
+        document.addEventListener('DOMContentLoaded', function () {
+            // Selecciona todos los enlaces de navegación dentro del elemento con ID 'navigation'.
+            const navLinks = document.querySelectorAll('#navigation a');
+            // Selecciona todas las secciones de contenido que tienen la clase 'content-section'.
+            const sections = document.querySelectorAll('.content-section');
+
+            /**
+             * Función `updateContent`: Se encarga de cargar y mostrar el contenido de la sección seleccionada.
+             * @param {string} targetId - El ID de la sección de contenido que se desea mostrar (ej. 'inicio', 'algebra').
+             */
+            function updateContent(targetId) {
+                // Primero, ocultamos todas las secciones de contenido existentes.
+                // Esto asegura que solo la sección activa sea visible en un momento dado.
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Luego, removemos la clase 'active' de todos los enlaces de navegación.
+                // Esto desactiva visualmente el enlace previamente seleccionado.
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Obtenemos los datos específicos para la sección que el usuario ha seleccionado,
+                // utilizando el `targetId` para buscar en el objeto `guideData`.
+                const data = guideData[targetId];
+                // Obtenemos la referencia al elemento HTML de la sección de contenido.
+                const sectionElement = document.getElementById(targetId);
+
+                // Verificamos si existen datos para el `targetId` seleccionado.
+                if (data) {
+                    let contentHtml = ''; // Inicializamos una variable para construir el HTML de la sección.
+
+                    // Si la sección seleccionada es 'inicio', cargamos su contenido específico.
+                    if (targetId === 'inicio') {
+                        // El contenido de inicio incluye un título, el texto principal y una sección de "Fundamento de Evidencia" con un iframe.
+                        contentHtml = `
+                            <h2 class="text-2xl font-bold mb-4 text-[#1E3A8A]">${data.title}</h2>
+                            ${data.content}
+                            <div class="mt-8 p-4 bg-purple-50 border-l-4 border-purple-400 rounded-r-md">
+                                <h3 class="text-xl font-semibold mb-3 text-purple-700">📂 Fundamento de Evidencia</h3>
+                                <p class="mb-4 text-gray-700">Aquí puedes visualizar el documento de fundamento de evidencia para esta guía.</p>
+                                <iframe class="document-viewer-iframe" src="${data.evidenceUrl}" frameborder="0"></iframe>
+                            </div>
+                        `;
+                    } else {
+                        // Si es una sección de materia (no 'inicio'), generamos su contenido dinámicamente.
+                        
+                        // Generamos el HTML para las estrategias de estudio.
+                        // Usamos el método `map` para iterar sobre el array `data.strategies` y crear un bloque de acordeón para cada estrategia.
+                        let strategiesHtml = data.strategies.map((strategy, index) => `
+                            <div class="mb-3 border border-gray-200 rounded-md">
+                                <button class="accordion-toggle w-full text-left p-4 bg-blue-50 hover:bg-blue-100 rounded-t-md focus:outline-none transition-colors duration-150">
+                                    <span class="font-semibold text-blue-700">${strategy.name}</span>
+                                    <span class="float-right transform transition-transform duration-300">&#9662;</span>
+                                </button>
+                                <div class="accordion-content bg-white p-4 rounded-b-md border-t border-gray-200">
+                                    <p class="text-gray-600 mb-2"><strong>Descripción:</strong> ${strategy.description}</p>
+                                    <p class="text-600 mb-1"><strong>Pasos para aplicarla:</strong></p>
+                                    <ul class="list-disc list-inside ml-4 mb-2 text-gray-600 space-y-1">
+                                        ${strategy.steps.map(step => `<li>${step}</li>`).join('')}
+                                    </ul>
+                                    <p class="text-gray-600"><strong>Recomendaciones:</strong> ${strategy.recommendations}</p>
+                                </div>
+                            </div>
+                        `).join(''); // `join('')` concatena todos los elementos del array en una sola cadena HTML.
+
+                        // Generamos el HTML para la lista de problemas comunes.
+                        let commonProblemsHtml = data.commonProblems.map(problem => `
+                            <li class="text-gray-700 leading-relaxed">${problem}</li>
+                        `).join('');
+
+                        // Generamos el HTML para los ejemplos prácticos, si existen.
+                        let examplesHtml = '';
+                        if (data.examples && data.examples.length > 0) {
+                            examplesHtml = `
+                                <div class="mt-6">
+                                    <h3 class="text-xl font-semibold mb-3 text-purple-700">📝 Ejemplos Prácticos</h3>
+                                    ${data.examples.map((example, index) => `
+                                        <div class="mb-3 border border-gray-200 rounded-md">
+                                            <button class="accordion-toggle w-full text-left p-4 bg-purple-50 hover:bg-purple-100 rounded-t-md focus:outline-none transition-colors duration-150">
+                                                <span class="font-semibold text-purple-700">${example.title}</span>
+                                                <span class="float-right transform transition-transform duration-300">&#9662;</span>
+                                            </button>
+                                            <div class="accordion-content bg-white p-4 rounded-b-md border-t border-gray-200">
+                                                ${example.content}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
+                        // Estructura principal de la sección de la materia, incluyendo el título, introducción, problemas comunes, estrategias y la sección de evidencias.
+                        contentHtml = `
+                            <h2 class="text-2xl font-bold mb-3 text-[#1E3A8A]">${data.title}</h2>
+                            <p class="mb-6 text-gray-700 italic leading-relaxed">${data.introduction}</p>
+                            
+                            <div class="mb-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-md">
+                                <h3 class="text-xl font-semibold mb-2 text-amber-700">🚨 Problemas Comunes</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    ${commonProblemsHtml}
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold mb-3 text-green-700">💡 Estrategias para el Éxito</h3>
+                                ${strategiesHtml}
+                            </div>
+
+                            ${examplesHtml} <div class="mt-8 p-4 bg-purple-50 border-l-4 border-purple-400 rounded-r-md">
+                                <h3 class="text-xl font-semibold mb-3 text-purple-700">📂 Evidencias de ${data.title.replace(/<[^>]*>?/gm, '')}</h3>
+                                <p class="mb-4 text-gray-700">Aquí puedes visualizar un archivo de evidencia preseleccionado para ${data.title.replace(/<[^>]*>?/gm, '')}</p>
+                                <iframe class="document-viewer-iframe" src="${data.evidenceUrl}" frameborder="0"></iframe>
+                            </div>
+                        `;
+                    }
+                    
+                    // Asignamos el HTML construido a la sección de contenido.
+                    sectionElement.innerHTML = contentHtml;
+                    // Volvemos a adjuntar los listeners a los acordeones, ya que el contenido se ha actualizado.
+                    addAccordionListeners();
+                }
+
+                // Activamos la clase 'active' en la sección de contenido actual para hacerla visible.
+                sectionElement.classList.add('active');
+
+                // Buscamos y activamos el enlace de navegación correspondiente a la sección que acabamos de mostrar.
+                const activeNavLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (activeNavLink) {
+                    activeNavLink.classList.add('active');
+                }
+            }
+
+            /**
+             * Función `addAccordionListeners`: Se encarga de añadir los event listeners a todos los botones de acordeón.
+             * Esto permite que los acordeones se expandan y contraigan al hacer clic.
+             */
+            function addAccordionListeners() {
+                // Seleccionamos todos los botones que actúan como toggles de acordeón.
+                const accordions = document.querySelectorAll('.accordion-toggle');
+                // Iteramos sobre cada botón de acordeón para añadir un event listener de 'click'.
+                accordions.forEach(accordion => {
+                    accordion.addEventListener('click', function () {
+                        // Alternamos la clase 'open' en el botón del acordeón.
+                        // Esta clase se usa para girar la flecha y controlar la visibilidad del contenido.
+                        this.classList.toggle('open');
+                        // Obtenemos la referencia al elemento de contenido del acordeón (el siguiente hermano del botón).
+                        const content = this.nextElementSibling;
+                        // Obtenemos la referencia a la flecha dentro del botón del acordeón.
+                        const arrow = this.querySelector('span.float-right');
+
+                        // Si el contenido del acordeón tiene una altura máxima definida (está abierto), lo cerramos.
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null; // Eliminamos la altura máxima para que se contraiga.
+                            arrow.style.transform = 'rotate(0deg)'; // Giramos la flecha a su posición original.
+                        } else {
+                            // Si el acordeón está cerrado, calculamos la altura de su contenido y lo abrimos.
+                            // `scrollHeight` nos da la altura total del contenido, incluso si está oculto.
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            arrow.style.transform = 'rotate(180deg)'; // Giramos la flecha para indicar que está abierto.
+                        }
+                    });
+                });
+            }
+
+            // Añadimos event listeners a todos los enlaces de navegación.
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevenimos el comportamiento por defecto del enlace (evitar que salte a un ancla o recargue la página).
+                    // Obtenemos el ID de la sección objetivo del atributo `data-target` del enlace.
+                    const targetId = this.dataset.target;
+                    // Llamamos a la función `updateContent` para cargar y mostrar la sección correspondiente.
+                    updateContent(targetId);
+                });
+            });
+
+            // Al cargar la página, mostramos el contenido de la sección 'inicio' por defecto.
+            updateContent('inicio');
+        });
+    </script>
+</body>
+</html>
